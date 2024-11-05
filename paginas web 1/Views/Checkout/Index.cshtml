@@ -1,0 +1,37 @@
+﻿@model PaginasWeb.Models.CheckoutViewModel
+
+<h1>Seu Carrinho</h1>
+<nav>
+    <ul>
+        <li><a href="@Url.Action("Index", "Home")">INICIO</a></li>
+        <li><a href="@Url.Action("About", "Home")">SOBRE</a></li>
+        <li><a href="@Url.Action("Index", "Shop")">SHOP</a></li>
+        <li><a href="@Url.Action("Index", "Checkout")">CARRINHO</a></li>
+    </ul>
+</nav>
+
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+    </tr>
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Quantity kg</td>
+            <td>@item.Price.ToString("C")</td>
+        </tr>
+    }
+</table>
+
+<h2>Opções de Pagamento</h2>
+<p>@Model.PaymentMethod</p>
+
+<h2>Endereço de Entrega</h2>
+<p>@Model.DeliveryAddress</p>
+
+<form asp-action="Finalizar" method="post">
+    <button type="submit">FINALIZAR</button>
+</form>
